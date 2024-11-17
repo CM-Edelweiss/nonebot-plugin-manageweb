@@ -20,7 +20,12 @@ _✨nb商店插件安装器web版✨_
 
 ## 💿 安装
 
-`使用镜像站可能需要等待镜像站同步`
+
+> [!WARNING]
+> 该插件需要fastapi支持
+> 使用镜像站可能需要等待镜像站同步
+
+
 
 <details open>
 <summary>使用 nb-cli 安装</summary>
