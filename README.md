@@ -14,7 +14,9 @@ _✨nb商店插件安装器web版✨_
 
 ## 📖 介绍
 
-使用webui安装、更新、卸载插件和修改`.evn.*`文件，并提供webui接入支持
+使用webui安装、更新、卸载插件和修改`.evn.*`文件，并提供webui接入支持<br>
+对非电脑和手机用户不友好，可能出现错位<br>
+（~~我是css低手~~）
 
 ## 💿 安装
 
@@ -58,3 +60,64 @@ _✨nb商店插件安装器web版✨_
     plugins = ["nonebot_plugin_manageweb"]
 
 </details>
+
+## 📋 效果
+```
+webui默认地址ip:端口/mw/login
+```
+
+![_](https://img.picui.cn/free/2024/11/17/6739b4f8a3b17.png)<br>
+![_](https://img.picui.cn/free/2024/11/17/6739b4f90f618.png)<br>
+![_](https://img.picui.cn/free/2024/11/17/6739b4f861f03.png)<br>
+![_](https://img.picui.cn/free/2024/11/17/6739b4f73bd4a.png)<br>
+
+## ⚙️ 配置
+
+在 nonebot2 项目的`.env`文件中添加下表中的必填配置
+
+| 配置项 | 必填 | 默认值 | 说明 |
+|:-----:|:----:|:----:|:----:|
+| mw_username| 否 | pmhelp |后台管理用户名 |
+| mw_password| 否 | admin | 后台管理密码 |
+| mw_key| 否 | ... | 后台管理token密钥 |
+
+
+## 🎉 接入webui（未验证）
+```python
+from nonebot_plugin_manageweb.web import BaseApiRouter
+from nonebot_plugin_manageweb.utils import authentication
+from fastapi import APIRouter
+from fastapi.responses import JSONResponse
+
+
+route = APIRouter()
+
+@route.post(
+    '/xxx', response_class=JSONResponse, dependencies=[authentication()]
+)
+async def _():
+    pass
+
+#添加api到BaseApiRouter
+BaseApiRouter.include_router(home_route)
+```
+
+```python
+from amis import (
+    PageSchema,
+    Page,
+    ....
+)
+from nonebot_plugin_manageweb.utils import background_css #背景图css
+from nonebot_plugin_manageweb.page.main import admin_app
+
+xxx_page = PageSchema(url='/地址', icon='xxx', label='xxx',
+                  schema=Page(title='xxx', body=...., style=background_css))
+#添加页面到admin_app
+admin_app.pages[0].children.append(xxx_page)
+```
+
+
+## 丨❤鸣谢
+- 来自[LittlePaimon](https://github.com/CMHopeSunshine/LittlePaimon)的webui代码参考
+- 来自[nonebot-plugin-updater](https://github.com/hanasa2023/nonebot-plugin-updater#readme)的nb安装代码
