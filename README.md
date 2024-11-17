@@ -77,7 +77,7 @@ webui默认地址ip:端口/mw/login
 
 | 配置项 | 必填 | 默认值 | 说明 |
 |:-----:|:----:|:----:|:----:|
-| mw_username| 否 | pmhelp |后台管理用户名 |
+| mw_username| 否 | admin |后台管理用户名 |
 | mw_password| 否 | admin | 后台管理密码 |
 | mw_key| 否 | ... | 后台管理token密钥 |
 
