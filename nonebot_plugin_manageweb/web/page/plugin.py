@@ -37,7 +37,8 @@ update_button = Action(
     api="/mw/api/plugins/update?project_link=${project_link}",
     confirmText="确定更新该插件吗？",
     level=LevelEnum.warning,
-    visibleOn='${is_installed and version != current_version}'
+    visibleOn='${is_installed}',
+    hiddenOn='${version == current_version}'
 )
 
 uninstall_button = Action(
