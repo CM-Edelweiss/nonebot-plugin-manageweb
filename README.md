@@ -69,11 +69,15 @@ _✨nb商店插件安装器web版✨_
 ```
 webui默认地址ip:端口/mw/login
 ```
+<details>
+<summary>webui效果</summary>
 
-![_](https://img.picui.cn/free/2024/11/17/6739b4f8a3b17.png)<br>
-![_](https://img.picui.cn/free/2024/11/17/6739b4f90f618.png)<br>
-![_](https://img.picui.cn/free/2024/11/17/6739b4f861f03.png)<br>
-![_](https://img.picui.cn/free/2024/11/17/6739b4f73bd4a.png)<br>
+![_](https://img.picui.cn/free/2024/11/17/6739b4f8a3b17.png)
+![_](https://img.picui.cn/free/2024/11/17/6739b4f90f618.png)
+![_](https://img.picui.cn/free/2024/11/17/6739b4f861f03.png)
+![_](https://img.picui.cn/free/2024/11/17/6739b4f73bd4a.png)
+
+</details>
 
 ## ⚙️ 配置
 
@@ -87,7 +91,26 @@ webui默认地址ip:端口/mw/login
 
 
 ## 🎉 接入webui（未验证）
+- api接入
+> 使用此方法访问地址未/mw/api/xxx
+> 也可以自行创建
 ```python
+自行创建
+from nonebot_plugin_manageweb.utils import authentication
+from nonebot import get_app, get_driver
+DRIVER = get_driver()
+
+@DRIVER.on_startup
+async def web():
+    app: FastAPI = get_app()
+
+    @app.post("/mw/api/xxx", response_class=JSONResponse, dependencies=[authentication()])
+    async def _(user: UserModel):
+        pass
+```
+
+```python
+api接入
 from nonebot_plugin_manageweb.web import BaseApiRouter
 from nonebot_plugin_manageweb.utils import authentication
 from fastapi import APIRouter
@@ -106,6 +129,7 @@ async def _():
 BaseApiRouter.include_router(home_route)
 ```
 
+- amis界面添加
 ```python
 from amis import (
     PageSchema,
@@ -115,8 +139,8 @@ from amis import (
 from nonebot_plugin_manageweb.utils import background_css #背景图css
 from nonebot_plugin_manageweb.page.main import admin_app
 
-xxx_page = PageSchema(url='/地址', icon='xxx', label='xxx',
-                  schema=Page(title='xxx', body=...., style=background_css))
+xxx_page = PageSchema(url='/地址', icon='图标', label='页面标题',
+                  schema=Page(title='页面上方标题', body=...., style=background_css))
 #添加页面到admin_app
 admin_app.pages[0].children.append(xxx_page)
 ```
