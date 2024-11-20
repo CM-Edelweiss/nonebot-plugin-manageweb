@@ -18,9 +18,10 @@ __plugin_meta__ = PluginMetadata(
     name='nb商店插件安装器web版',
     description='Nonebot插件商店安装插件，使用基于fastapi和amis的webui安装',
     type="application",
-    usage="",
+    usage="webui服务",
     homepage="https://github.com/CM-Edelweiss/nonebot-plugin-manageweb",
     config=Config,
+    supported_adapters=None,
     extra={
         'author': 'CM-Edelweiss',
         'version': '0.1.0',
