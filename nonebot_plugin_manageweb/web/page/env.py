@@ -45,4 +45,4 @@ nonebot_form = Form(
 )
 
 page = PageSchema(url='/configs', icon='fa fa-wrench', label='Nonebot配置',
-                  schema=Page(title='Nonebot配置', body=nonebot_form, style=background_css))
+                  schema=Page(title='Nonebot配置', body=nonebot_form, style=background_css))  # type: ignore

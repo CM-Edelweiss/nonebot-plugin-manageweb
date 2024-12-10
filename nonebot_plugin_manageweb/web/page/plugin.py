@@ -21,20 +21,20 @@ from ...utils import rounded_css_9, rounded_css_8, background_css, rounded_css_c
 installation_button = Action(
     label='安装',
     level=LevelEnum.success,
-    style={"color": "#4CAF50", "border-radius": "2em", },
+    style={"color": "#4CAF50", "border-radius": "2em", },  # type: ignore
     reload='cards',
     actionType="ajax",
-    api="/mw/api/plugins/install?project_link=${project_link}",
+    api="/mw/api/plugins/install?project_link=${project_link}",  # type: ignore
     confirmText="确定安装该插件吗？",
     hiddenOn='${is_installed}'
 )
 
 update_button = Action(
     label='从${current_version}更新到最新',
-    style={"color": "#FFD700", "border-radius": "2em", },
+    style={"color": "#FFD700", "border-radius": "2em", },  # type: ignore
     reload='cards',
     actionType="ajax",
-    api="/mw/api/plugins/update?project_link=${project_link}",
+    api="/mw/api/plugins/update?project_link=${project_link}",  # type: ignore
     confirmText="确定更新该插件吗？",
     level=LevelEnum.warning,
     visibleOn='${is_installed}',
@@ -43,10 +43,10 @@ update_button = Action(
 
 uninstall_button = Action(
     label='卸载',
-    style={"color": "#FF0000", "border-radius": "2em", },
+    style={"color": "#FF0000", "border-radius": "2em", },  # type: ignore
     reload='cards',
     actionType="ajax",
-    api="/mw/api/plugins/uninstall?project_link=${project_link}",
+    api="/mw/api/plugins/uninstall?project_link=${project_link}", # type: ignore
     confirmText="确定卸载该插件吗？",
     level=LevelEnum.danger,
     visibleOn='${is_installed}'
@@ -70,9 +70,9 @@ card = Card(
         description='$desc'
     ),
     itemAction=Action(actionType="url", confirmText="确定访问吗？",
-                      url='${homepage}', blank=True),
+                      url='${homepage}', blank=True),  # type: ignore
     actions=[installation_button, update_button, uninstall_button],
-    style=rounded_css_curd,
+    style=rounded_css_curd,  # type: ignore
     className='m-l',
     toolbar=[toolbar_version, Divider(), toolbar_state, toolbar_official],
 )
@@ -104,7 +104,7 @@ cards_curd = CardsCRUD(
         "style": rounded_css_9,
         "mode": DisplayModeEnum.inline
     },
-    style=rounded_css_8,
+    style=rounded_css_8,  # type: ignore
     perPage=12,
     autoJumpToTopOnPagerChange=True,
     placeholder='暂无插件信息',
@@ -115,4 +115,4 @@ cards_curd = CardsCRUD(
 
 
 page = PageSchema(url='/plugins', icon='fa fa-shopping-bag', label='商店',
-                  schema=Page(title='商店', body=cards_curd, style=background_css))
+                  schema=Page(title='商店', body=cards_curd, style=background_css))  # type: ignore

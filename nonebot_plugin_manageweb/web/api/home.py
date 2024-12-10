@@ -72,8 +72,8 @@ async def restart() -> None:
 async def get_log(token: Optional[str] = Header(...), level: str = 'info', num: Union[int, str] = 100):
     if token != config.mw_key[:16]:
         return '非法请求'
-    show_logs = info_logs[-(num or 1)
-                            :] if level == 'info' else debug_logs[-(num or 1):]
+    show_logs = info_logs[-int(num or 1)
+                               :] if level == 'info' else debug_logs[-int(num or 1):]
 
     async def streaming_logs():
         for log in show_logs:
@@ -90,4 +90,4 @@ async def run_cmd(token: Optional[str] = Header(...), cmd: str = ''):
     if not cmd:
         return '无效命令'
     p = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
-    return StreamingResponse(p.stdout or p.stderr)
+    return StreamingResponse(p.stdout or p.stderr) # type: ignore

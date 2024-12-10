@@ -27,7 +27,7 @@ async def env_config(file_name: str):
 
 
 @route.post('/env_config', response_class=JSONResponse, dependencies=[authentication()])
-async def env_config(file_name: str, data: dict):
+async def env_config_w(file_name: str, data: dict):
     try:
         with open(Path() / file_name, 'w', encoding='utf-8') as f:
             f.write(data['editor'])

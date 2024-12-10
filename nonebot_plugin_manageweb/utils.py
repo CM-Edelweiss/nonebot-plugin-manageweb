@@ -1,9 +1,8 @@
-from jose import jwt
 from amis import Html
 from .config import config
 from typing import Optional
 from fastapi import Header, HTTPException, Depends
-
+from jose import jwt, JWTError, ExpiredSignatureError
 
 requestAdaptor = """
 requestAdaptor(api) {
@@ -72,6 +71,8 @@ logo = Html(
 
 def authentication():
     def inner(token: Optional[str] = Header(...)):
+        if token is None:
+            raise HTTPException(status_code=400, detail="Token is missing")
         try:
             payload = jwt.decode(
                 token, config.mw_key, algorithms="HS256"
@@ -81,7 +82,7 @@ def authentication():
                 or username != config.mw_username
             ):
                 raise HTTPException(status_code=400, detail="登录验证失败或已失效，请重新登录")
-        except (jwt.JWTError, jwt.ExpiredSignatureError, AttributeError):
+        except (JWTError, ExpiredSignatureError, AttributeError):
             raise HTTPException(status_code=400, detail="登录验证失败或已失效，请重新登录")
 
     return Depends(inner)

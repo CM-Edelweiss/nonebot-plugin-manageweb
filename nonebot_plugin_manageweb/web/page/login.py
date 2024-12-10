@@ -47,8 +47,8 @@ login_body = Wrapper(className="w-2/5 mx-auto my-0 m:w-full", body=Form(
         ),
     ],
     mode=DisplayModeEnum.horizontal,
-    style=rounded_css_9,
-    actions=[Action(label='登录', level=LevelEnum.primary, type='submit', style={
+    style=rounded_css_9, # type: ignore
+    actions=[Action(label='登录', level=LevelEnum.primary, type='submit', style={ # type: ignore
         "display": "table",
         "margin": "0 auto",
         "border-radius": "2em",
@@ -57,4 +57,4 @@ login_body = Wrapper(className="w-2/5 mx-auto my-0 m:w-full", body=Form(
     redirect="/mw/admin",
 ))
 
-login_page = Page(title="", body=login_body, style=background_css)
+login_page = Page(title="", body=login_body, style=background_css) # type: ignore

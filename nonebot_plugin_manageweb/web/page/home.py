@@ -132,7 +132,7 @@ operation_button = Flex(
 
 
 page_detail = Page(
-    title='', body=[logo, operation_button], style=background_css)
+    title='', body=[logo, operation_button], style=background_css) # type: ignore
 page = PageSchema(
-    url='/home', label='首页', icon='fa fa-home', isDefaultPage=True, schema=page_detail
+    url='/home', label='首页', icon='fa fa-home', isDefaultPage=True, schema=page_detail # type: ignore
 )
