@@ -30,7 +30,7 @@ installation_button = Action(
 )
 
 update_button = Action(
-    label='更新到V${version}',
+    label='从${current_version}更新到最新',
     style={"color": "#FFD700", "border-radius": "2em", },
     reload='cards',
     actionType="ajax",
