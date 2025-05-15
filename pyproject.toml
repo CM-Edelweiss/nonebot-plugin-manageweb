@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot-plugin-manageweb"
-version = "0.1.4"
+version = "0.1.5"
 description = "Nonebot插件商店安装插件，使用基于fastapi和amis的webui安装"
 authors = ["CM-Edelweiss <2633668472@qq.com>"]
 readme = "README.md"
@@ -11,7 +11,7 @@ nonebot2 = "^2.2.0"
 fastapi =  ">=0.93.0"
 importlib-metadata = ">=4.13.0"
 httpx = "^0.23.0"
-amis-python = "^1.0.6"
+amis-py-model = "^1.0.0"
 python-jose = "^3.3.0"
 toml = ">=0.10.2"
 
