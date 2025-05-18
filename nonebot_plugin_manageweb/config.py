@@ -9,6 +9,8 @@ class Config(BaseModel):
     mw_password: str = "admin"
     # 后台管理token密钥
     mw_key: str = "r99nxsvr93a5da907dy7adi241mvisjydxspiwxgpiyoh9nas35036fkxd7y"
+    # CDN地址
+    MW_CDN: str = "https://npm.onmicrosoft.cn/"
 
 
 config: Config = get_plugin_config(Config)
